@@ -1,1 +1,50 @@
-@import "tailwindcss  "
+@import "tailwindcss";
+
+@theme {
+    --color-background: oklch(0.9879 0.0029 264.54);
+    --color-foreground: oklch(1 0 0);
+
+    --color-primary: oklch(0.5424 0.2456 292.91);
+    --color-primary-foreground: oklch(1 0 0);
+    --color-primary-glow: oklch(0.5919 0.2456 292.91);
+
+    --color-accent: oklch(0.5424 0.2456 172.91);
+
+    --color-secondary: oklch(0.65 0.20 250);
+    --color-secondary-foreground: oklch(0.9395 0.0314 297.72);
+    --color-secondary-active: oklch(0.55 0.17 250);
+
+    --color-muted: oklch(0.9674 0.0013 286.37);
+    --color-muted-foreground: oklch(0.7 0.02 260);
+
+    --color-border: oklch(0.9197 0.0041 286.32);
+
+    --gradient-primary: linear-gradient(135deg, hsl(262 83% 58%), hsl(252 95% 63%));
+    --gradient-secondary: linear-gradient(135deg, hsl(210 100% 56%), hsl(192 95% 51%));
+    --gradient-hero: linear-gradient(135deg, hsl(262 83% 58%) 0%, hsl(252 95% 63%) 50%, hsl(210 100% 56%) 100%);
+}
+
+* {
+    transition: all 150ms;
+    box-sizing: border-box;
+}
+
+.gradient-hero {
+    background: var(--gradient-hero);
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
