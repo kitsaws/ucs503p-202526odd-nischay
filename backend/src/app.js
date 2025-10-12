@@ -30,6 +30,7 @@ app.use(cors({
     methods: "GET,PUSH,POST,DELETE,UPDATE",
     credentials: true,
 }));
+app.enable('trust proxy');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static('uploads'));
