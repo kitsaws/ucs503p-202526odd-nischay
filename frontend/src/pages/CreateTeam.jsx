@@ -86,7 +86,7 @@ const CreateTeam = () => {
     if (loading) return <p>Loading...</p>
     return (
         <Layout>
-            <div className="mx-50 my-10">
+            <div className="mx-50 mb-10">
                 <Button
                 variant='ghost'
                 className='w-fit'
