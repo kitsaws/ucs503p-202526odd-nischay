@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const passport = require('passport');
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const passportSetup = require('./services/passport');
 
 const authRoutes = require('./routes/auth');
