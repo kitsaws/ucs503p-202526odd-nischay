@@ -2,6 +2,8 @@
 
 **Squad Up** is a full-stack platform that helps people **form teams for events** and organizations to **host events like hackathons, competitions, and workshops**. It also features a **real-time messaging system** so teams can collaborate smoothly.  
 
+🔗 **Deployed Site:** [https://squadup-frontend-9vf2.onrender.com/](https://squadup-frontend-9vf2.onrender.com/)  
+
 ---
 
 ## ✨ Features  
@@ -28,7 +30,7 @@
 - **Database:** MongoDB (Mongoose)  
 - **Authentication:** JWT-based auth  
 - **Real-time Communication:** Socket.IO  
-- **Deployment:** Vercel (frontend) + Render/Heroku/AWS (backend)  
+- **Deployment:** Render (frontend+backend)
 
 ---
 
