@@ -3,7 +3,7 @@ import { Button } from '../ui/Button'
 
 const Card = ({ event }) => {
     return (
-        <div className="w-124 h-100 rounded-xl overflow-hidden hover-lift border border-border">
+        <div className="w-110 h-96 rounded-xl overflow-hidden hover-lift border border-border">
             <div className="h-2 bg-primary"></div>
             <div className="p-6 flex flex-col justify-between h-full">
                 <div className='max-h-50 space-y-4'>

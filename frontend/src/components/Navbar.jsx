@@ -22,7 +22,7 @@ const Navbar = () => {
     }
 
     return (
-        <nav className='w-full px-20 py-4 flex justify-between items-center border-b border-border bg-[hsl(0_0%_100%)]/50 backdrop-blur-sm sticky top-0 z-50'>
+        <nav className='w-full px-10 py-4 flex justify-between items-center border-b border-border bg-[hsl(0_0%_100%)]/50 backdrop-blur-sm sticky top-0 z-50'>
             <NavLink to={'/'} className={'flex gap-1'}>
                 <Logo className='' />
             </NavLink>
@@ -38,13 +38,13 @@ const Navbar = () => {
             </div>
             {user ?
                 <div className='flex gap-2 justify-center items-center'>
-                    <Button variant={'border'} className={'border-0'} onClick={() => navigate(`/profile/${user._id}`)}>
+                    <Button variant={'border'} className={'border-0 p-0'} onClick={() => navigate(`/profile/${user._id}`)}>
                         <div className="pfp flex justify-center items-center">
                             <Avatar member={user} size={'size-10'} />
                         </div>
                     </Button>
-                    <Button variant={'outline'} onClick={handleLogout} className={'p-2 text-red-500 border-red-500'}>
-                        <LogOut size={20} />
+                    <Button variant={'outline'} onClick={handleLogout} className={'p-2 text-red-500 border-red-500 hover:text-white hover:bg-red-500'}>
+                        <LogOut size={16} />
                     </Button>
                 </div>
                 :

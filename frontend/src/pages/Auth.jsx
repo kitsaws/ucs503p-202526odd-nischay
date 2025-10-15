@@ -26,7 +26,7 @@ const Auth = () => {
     }
 
     const googleAuth = () => {
-        window.open(`${import.meta.env.VITE_API_URL}/auth/google/callback`, "_self")  
+        window.open(`${import.meta.env.VITE_API_URL}/auth/google`, "_self")  
         // window.open(`http://localhost:3000/api/auth/google/callback`, "_self")  
     };
 
