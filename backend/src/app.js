@@ -1,4 +1,6 @@
-require('dotenv').config({ path: './src/.env' });
+const dotenv = require('dotenv');
+const envFile = process.env.NODE_ENV === "production" ? ".env.production" : ".env.development"
+dotenv.config({ path: `./src/${envFile}` });
 const express = require('express');
 const cors = require('cors');
 const passport = require('passport');
@@ -24,17 +26,18 @@ const app = express();
 //   })
 // );
 
+const isProd = process.env.NODE_ENV === "production";
 app.enable('trust proxy');
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
-  proxy: true,
+  proxy: isProd,
   store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
   cookie: {
     httpOnly: true,
-    secure: true,           // must be true on Render
-    sameSite: 'none',       // allow cross-site cookies
+    secure: isProd,           // must be true on Render
+    sameSite: isProd ? 'none' : 'lax',       // allow cross-site cookies
     maxAge: 24 * 60 * 60 * 1000,
   },
 }));

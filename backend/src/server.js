@@ -1,7 +1,7 @@
 const app = require('./app')
-require('dotenv').config({ path: './src/.env' });
+const envFile = process.env.NODE_ENV === "production" ? ".env.production" : ".env.development"
+require('dotenv').config({ path: `./src/${envFile}` });
 const mongoose = require('mongoose');
-
 
 const PORT = process.env.PORT || 3000;
 

@@ -127,7 +127,7 @@ exports.rejectRequest = async (req, res) => {
 // Get single team
 exports.getTeamById = async (req, res) => {
   try {
-    const team = await Team.findById(req.params.id).populate('members leaderId');
+    const team = await Team.findById(req.params.id).populate('members eventId leaderId');
     if (!team) return res.status(404).json({ message: 'Team not found' });
     res.json(team);
   } catch (err) {
