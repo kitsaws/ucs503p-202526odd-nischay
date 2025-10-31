@@ -6,7 +6,10 @@
   "outputDirectory": "dist",
   "environment": {
     "NODE_VERSION": "20"
-  }
+  },
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
 }
 
 
