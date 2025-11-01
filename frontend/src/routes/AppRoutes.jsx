@@ -7,6 +7,7 @@ import CreateTeam from '../pages/CreateTeam'
 import TeamDisplay from '../pages/TeamDisplay'
 import Profile from '../pages/Profile'
 import EditProfile from '../pages/EditProfile'
+import TeamRequests from '../pages/TeamRequests'
 
 const AppRoutes = () => {
   return (
@@ -17,7 +18,8 @@ const AppRoutes = () => {
         <Route path='/create-team' element={<CreateTeam />} />
         <Route path='/teams' element={<TeamDashboard />} />
         <Route path='/team/:id' element={<TeamDisplay />} />
-        <Route path='/team/:id/manage-team' element={<TeamDisplay />} />
+        <Route path='/team/:id/edit' element={<TeamDisplay />} />
+        <Route path='/team/:id/requests' element={<TeamRequests />} />
         <Route path='/profile/:id' element={<Profile />} />
         <Route path='/profile/:id/edit-profile' element={<EditProfile />} />
     </Routes>

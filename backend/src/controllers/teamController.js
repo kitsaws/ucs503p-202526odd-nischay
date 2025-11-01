@@ -82,7 +82,9 @@ exports.requestToJoinTeam = async (req, res) => {
     const team = await Team.findById(req.params.id);
 
     // Check if already requested
-    const existingRequest = team.requests.find(r => r.user_id.toString() === req.user.id);
+    console.log(req.user);
+    
+    const existingRequest = team.requests.find(r => r.userId.toString() === req.user.id);
     if (existingRequest) return res.status(400).json({ message: 'Already requested' });
 
     team.requests.push({ userId: req.user._id });
@@ -97,15 +99,19 @@ exports.requestToJoinTeam = async (req, res) => {
 exports.acceptRequest = async (req, res) => {
   try {
     const team = await Team.findById(req.params.id);
-    const requestIndex = team.requests.findIndex(r => r.user_id.toString() === req.params.userId);
+    const requestIndex = team.requests.findIndex(r => r.userId.toString() === req.params.memberId.toString());
 
     if (requestIndex === -1) return res.status(404).json({ message: 'Request not found' });
 
-    const userId = team.requests[requestIndex].user_id;
+    const userId = team.requests[requestIndex].userId;
     team.members.push(userId);
     team.requests.splice(requestIndex, 1);
 
+    const member = await User.findById(req.params.memberId);
+    member.teams.push(req.params.id);
+
     await team.save();
+    await member.save();
     res.json(team);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -116,7 +122,7 @@ exports.acceptRequest = async (req, res) => {
 exports.rejectRequest = async (req, res) => {
   try {
     const team = await Team.findById(req.params.id);
-    team.requests = team.requests.filter(r => r.user_id.toString() !== req.params.userId);
+    team.requests = team.requests.filter(r => r.userId.toString() !== req.params.memberId.toString());
     await team.save();
     res.json(team);
   } catch (err) {
@@ -127,7 +133,7 @@ exports.rejectRequest = async (req, res) => {
 // Get single team
 exports.getTeamById = async (req, res) => {
   try {
-    const team = await Team.findById(req.params.id).populate('members eventId leaderId');
+    const team = await Team.findById(req.params.id).populate('members eventId leaderId requests.userId');
     if (!team) return res.status(404).json({ message: 'Team not found' });
     res.json(team);
   } catch (err) {

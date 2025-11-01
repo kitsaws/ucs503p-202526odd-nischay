@@ -1,5 +1,6 @@
 import { Badge, Calendar, Clock, MapPin, Users } from 'lucide-react'
 import { Button } from '../ui/Button'
+import moment from 'moment'
 
 const Card = ({ event }) => {
     return (
@@ -22,22 +23,20 @@ const Card = ({ event }) => {
                     <div className="space-y-2 text-sm">
                         <div className="flex items-center gap-2 text-muted-foreground">
                             <Calendar className="h-4 w-4" />
-                            <span>{event.date}</span>
+                            <span>{moment(event.time).format("DD-MM-YYYY")}</span>
                         </div>
-                        <div className="flex items-center gap-2 text-muted-foreground">
-                            <Clock className="h-4 w-4" />
-                            <span>{event.time}</span>
-                        </div>
-                        <div className="flex items-center gap-2 text-muted-foreground">
-                            <MapPin className="h-4 w-4" />
-                            <span>{event.location}</span>
-                        </div>
-                        <div className="flex items-center gap-2 text-muted-foreground">
-                            <Users className="h-4 w-4" />
-                            <span>
-                                {event.participants}/{event.maxParticipants} participants
-                            </span>
-                        </div>
+                        {event.time &&
+                            <div className="flex items-center gap-2 text-muted-foreground">
+                                <Clock className="h-4 w-4" />
+                                <span>{moment(event.time).format("DD-MM-YYYY")}</span>
+                            </div>
+                        }
+                        {event.location &&
+                            <div className="flex items-center gap-2 text-muted-foreground">
+                                <MapPin className="h-4 w-4" />
+                                <span>{event.location}</span>
+                            </div>
+                        }
                     </div>
                 </div>
 

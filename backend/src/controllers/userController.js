@@ -74,9 +74,65 @@ exports.uploadResume = async (req, res) => {
 // Update user info
 exports.updateProfile = async (req, res) => {
   try {
-    const updatedUser = await User.findByIdAndUpdate(req.user.id, req.body, { new: true });
-    res.json(updatedUser);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+    const userId = req.params.id;
+    const {
+      fullName,
+      email,
+      university,
+      branch,
+      year,
+      bio,
+      skills,
+      resumeUrl,
+      profilePic,
+      socials,
+    } = req.body;
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    // Update fields if provided
+    if (fullName !== undefined) user.name = fullName;
+    if (email !== undefined) user.email = email;
+    if (university !== undefined) user.university = university;
+    if (branch !== undefined) user.branch = branch;
+    if (year !== undefined) user.year = year;
+    if (bio !== undefined) user.bio = bio;
+    if (resumeUrl !== undefined) user.resumeUrl = resumeUrl;
+    if (profilePic !== undefined) user.profilePic = profilePic;
+
+    // Ensure skills is an array (in case frontend sends comma-separated string)
+    if (skills !== undefined) {
+      if (typeof skills === "string") {
+        user.skills = skills.split(",").map((s) => s.trim()).filter(Boolean);
+      } else if (Array.isArray(skills)) {
+        user.skills = skills;
+      }
+    }
+
+    // Handle socials update (only LinkedIn and GitHub editable)
+    if (socials !== undefined && typeof socials === "object") {
+      user.socials.linkedin = socials.linkedin || user.socials.linkedin || "";
+      user.socials.github = socials.github || user.socials.github || "";
+
+      // Preserve email inside socials (always synced to main email)
+      user.socials.email = user.email;
+    }
+
+    const updatedUser = await user.save();
+    res.status(200).json({
+      success: true,
+      message: "Profile updated successfully",
+      user: updatedUser,
+    });
+  } catch (error) {
+    console.error("Error updating profile:", error);
+    res.status(400).json({
+      success: false,
+      message: "Failed to update profile",
+      error: error.message,
+    });
   }
 };

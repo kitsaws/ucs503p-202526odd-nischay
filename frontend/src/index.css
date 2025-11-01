@@ -32,6 +32,12 @@
 .gradient-hero {
     background: var(--gradient-hero);
 }
+.gradient-primary {
+    background: var(--gradient-primary);
+}
+.gradient-secondary {
+    background: var(--gradient-secondary);
+}
 
 .animate-float {
     animation: float 3s ease-in-out infinite;

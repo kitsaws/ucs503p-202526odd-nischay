@@ -3,7 +3,7 @@ import { useUser } from '../context/userContext'
 import { Button } from '../components/ui/Button'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import Avatar from '../components/ui/Avatar'
-import { Mail, Linkedin, Github, Code, Users, SquareArrowOutUpRight } from 'lucide-react'
+import { Mail, Linkedin, Github, Code, LogOut, Users, SquareArrowOutUpRight, SquarePen } from 'lucide-react'
 import { toast } from 'react-toastify'
 import { useEffect, useState } from 'react'
 import api from '../services/api'
@@ -14,6 +14,19 @@ const Profile = () => {
     const { id } = useParams();
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+
+    const handleLogout = async () => {
+        try {
+            const res = await api.get('/auth/logout');
+            setUser(null);
+            navigate('/');
+            window.location.reload();
+        } catch (err) {
+            toast.error('Logout failed');
+            console.error('Logout Failed', err.response?.data || err.message);
+        }
+    }
+
     useEffect(() => {
         const fetchUser = async () => {
             try {
@@ -43,12 +56,17 @@ const Profile = () => {
                         <h2 className='text-2xl font-bold'>{user.name}</h2>
                         {
                             userAuth && userAuth._id === id && (
-                                <Button
-                                    variant={'outline'}
-                                    onClick={() => navigate(`/profile/${id}/edit-profile`)}
-                                >
-                                    Edit Profile
-                                </Button>
+                                <div className='space-x-2'>
+                                    <Button
+                                        variant={'outline'}
+                                        onClick={() => navigate(`/profile/${id}/edit-profile`)}
+                                    >
+                                        <SquarePen /> Edit Profile
+                                    </Button>
+                                    <Button variant={'outline'} onClick={handleLogout} className={'text-red-500 border-red-500 hover:bg-red-500'}>
+                                        <LogOut /> Logout
+                                    </Button>
+                                </div>
                             )}
                         <div className="w-[95%] h-0 border border-muted mx-auto my-2" />
                         <div className='w-full text-md space-y-2 text-muted-foreground'>
@@ -156,18 +174,20 @@ const Profile = () => {
                                 user.teams.map((team, index) => (
                                     <div key={index} className="teamCard rounded-lg px-6 py-2 bg-muted w-full flex justify-between items-center">
                                         <div>
-                                            <p className='text-xl font-semibold'>{team.teamName}</p>
-                                            <p className='text-lg text-muted-foreground'>{team.eventId.title}</p>
+                                            <p className='text-lg font-semibold'>{team.teamName}</p>
+                                            <p className='text-sm text-muted-foreground'>{team.eventId.title}</p>
                                         </div>
                                         <div className='flex gap-2 justify-center items-center'>
-                                            {user._id === team.leaderId && (
-                                                <Button variant={'outline'} size={'sm'} onClick={() => navigate(`/team/${team._id}/manage-team`)}>
+                                            {user._id === team.leaderId ? (
+                                                <Button variant={'outline'} size={'sm'} onClick={() => navigate(`/team/${team._id}/edit`)}>
                                                     Manage Team
                                                 </Button>
+                                            ) : (
+                                                <Link to={`/team/${team._id}`}>
+                                                    <SquareArrowOutUpRight />
+                                                </Link>
                                             )}
-                                            <Link to={`/team/${team._id}`}>
-                                                <SquareArrowOutUpRight />
-                                            </Link>
+
                                         </div>
                                     </div>
                                 ))

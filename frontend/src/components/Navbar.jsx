@@ -8,18 +8,8 @@ import api from '../services/api'
 import { toast } from 'react-toastify'
 
 const Navbar = () => {
-    const { user, setUser } = useUser();
+    const { user } = useUser();
     const navigate = useNavigate();
-    const handleLogout = async () => {
-        try {
-            const res = await api.get('/auth/logout');
-            setUser(null);
-            navigate('/')
-        } catch (err) {
-            toast.error('Logout failed');
-            console.error('Logout Failed', err.response?.data || err.message);
-        }
-    }
 
     return (
         <nav className='w-full px-10 py-4 flex justify-between items-center border-b border-border bg-[hsl(0_0%_100%)]/50 backdrop-blur-sm sticky top-0 z-50'>
@@ -42,9 +32,6 @@ const Navbar = () => {
                         <div className="pfp flex justify-center items-center">
                             <Avatar member={user} size={'size-10'} />
                         </div>
-                    </Button>
-                    <Button variant={'outline'} onClick={handleLogout} className={'p-2 text-red-500 border-red-500 hover:text-white hover:bg-red-500'}>
-                        <LogOut size={16} />
                     </Button>
                 </div>
                 :
