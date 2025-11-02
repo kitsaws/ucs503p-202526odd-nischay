@@ -60,7 +60,7 @@ const TeamDisplay = () => {
                 ← Back to Dashboard
             </Button>
             <div className='flex gap-4'>
-                <div className='left-div min-w-2/3 flex flex-col gap-4'>
+                <div className='left-div w-2/3 flex flex-col gap-4'>
                     <div className="rounded-xl border flex flex-col gap-4 border-border p-8">
                         <div className='flex justify-between items-center'>
                             <div>
