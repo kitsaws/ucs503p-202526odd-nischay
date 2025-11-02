@@ -62,10 +62,10 @@ const CreateTeam = () => {
                 event,
                 roles: selectedRoles,
             };
-            console.log('payload-> ', payload);
+            // console.log('payload-> ', payload);
 
             const res = await api.post(`/teams/${user._id}/create-team`, payload);
-            console.log("Team created:", res.data._id);
+            // console.log("Team created:", res.data._id);
             alert("Team created successfully!");
 
             navigate(`/team/${res.data._id}`);

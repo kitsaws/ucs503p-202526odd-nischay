@@ -31,7 +31,7 @@ const Profile = () => {
         const fetchUser = async () => {
             try {
                 const res = await api.get(`/user/${id}`);
-                console.log(res.data);
+                // console.log(res.data);
                 setUser(res.data);
             } catch (err) {
                 alert('User not found.');

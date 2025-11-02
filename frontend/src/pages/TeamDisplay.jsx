@@ -34,7 +34,7 @@ const TeamDisplay = () => {
         const fetchTeam = async () => {
             try {
                 const res = await api.get(`/teams/${id}`);
-                console.log(res.data);
+                // console.log(res.data);
                 setTeam(res.data);
             } catch (err) {
                 console.error('Could not fetch team info', err.response?.data || err.message);
@@ -45,7 +45,7 @@ const TeamDisplay = () => {
 
         fetchTeam();
     }, [id])
-    console.log({ team });
+    // console.log({ team });
 
     if (loading) return <p>Loading...</p>;
     if (!team) return <p>Team not found.</p>;

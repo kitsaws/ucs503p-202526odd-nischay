@@ -64,7 +64,7 @@ const seedTeams = async () => {
   try {
     await Team.deleteMany(); // optional: clear existing teams
     const createdTeams = await Team.insertMany(sampleTeams);
-    console.log(`${createdTeams.length} teams created successfully!`);
+    // console.log(`${createdTeams.length} teams created successfully!`);
     mongoose.disconnect();
   } catch (err) {
     console.error(err);

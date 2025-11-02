@@ -14,7 +14,7 @@ const TeamDashboard = () => {
     const [filtered, setFiltered] = useState(teams);
     useEffect(() => {
         setFiltered(teams);
-        console.log(teams);
+        // console.log(teams);
     }, [teams, loading])
 
     const categoryFilter = (category) => {
