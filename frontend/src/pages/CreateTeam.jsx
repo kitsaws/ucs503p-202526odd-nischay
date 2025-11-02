@@ -50,7 +50,7 @@ const CreateTeam = () => {
         if (!teamName || !event || selectedRoles.length === 0) {
             return alert("Please fill in all required fields");
         }
-        if (teamSize === 0){
+        if (teamSize === 0) {
             return alert('Team size ')
         }
 
@@ -88,9 +88,9 @@ const CreateTeam = () => {
         <Layout>
             <div className="mx-50 mb-10">
                 <Button
-                variant='ghost'
-                className='w-fit'
-                onClick={() => navigate('/events')}
+                    variant='ghost'
+                    className='w-fit'
+                    onClick={() => navigate('/events')}
                 >
                     ← Back to Dashboard
                 </Button>
@@ -125,13 +125,26 @@ const CreateTeam = () => {
                     </Label>
                     <Label htmlFor="roles">
                         Roles Needed <span className="text-red-500">*</span>
-                        <p className="text-md text-muted-foreground font-normal">Add roles you're looking for in your team</p>
+                        <p className="text-md text-muted-foreground font-normal">
+                            Add roles you're looking for in your team
+                        </p>
                         <div className="flex gap-2 mt-4">
-                            <Input type="text" name='roles' id='roles' placeholder='Add custom roles...' />
-                            <div className="size-10 flex justify-center items-center rounded-lg bg-primary text-white hover:bg-primary-glow">
+                            <Input type="text" name="roles" id="roles" placeholder="Add custom roles..." />
+                            <Button
+                                className="p-2"
+                                onClick={() => {
+                                    const input = document.getElementById('roles');
+                                    const role = input.value.trim().charAt(0).toUpperCase() + input.value.trim().slice(1);
+                                    if (role) {
+                                        handleAddRole(role);
+                                        input.value = ''; // clear the input after adding
+                                    }
+                                }}
+                            >
                                 <Plus />
-                            </div>
+                            </Button>
                         </div>
+
                         <div className="mt-4">
                             <p>Suggested Roles:</p>
                             <div className="mt-2 flex flex-wrap gap-2">
