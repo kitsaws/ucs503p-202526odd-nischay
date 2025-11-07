@@ -29,7 +29,7 @@ const Dropdown = ({ options = [], defaultDisplay = 'All items', onSelect, classN
       <Button
         variant="border"
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-60 flex justify-between items-center ${className}`}
+        className={`w-full md:w-60 flex justify-between items-center ${className}`}
       >
         {children}
         <p>{selection === '' ? defaultDisplay : selection}</p>

@@ -4,7 +4,7 @@ const Card = ({ logo, title, desc }) => {
     const [hovering, setHovering] = useState(false);
     return (
         <div
-            className='card w-112 p-6 flex flex-col gap-2 rounded-xl border border-border bg-white shadow-muted-foreground hover:shadow-md hover:-translate-y-1'
+            className='card w-full lg:w-112 p-6 flex flex-col gap-2 rounded-xl border border-border bg-white shadow-muted-foreground hover:shadow-md hover:-translate-y-1'
             onMouseEnter={() => setHovering(true)}
             onMouseLeave={() => setHovering(false)}
         >

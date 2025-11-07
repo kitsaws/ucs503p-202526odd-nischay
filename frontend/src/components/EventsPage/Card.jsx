@@ -4,10 +4,10 @@ import moment from 'moment'
 
 const Card = ({ event }) => {
     return (
-        <div className="w-110 h-96 rounded-xl overflow-hidden hover-lift border border-border">
+        <div className="rounded-xl overflow-hidden hover-lift border border-border">
             <div className="h-2 bg-primary"></div>
-            <div className="p-6 flex flex-col justify-between h-full">
-                <div className='max-h-50 space-y-4'>
+            <div className="p-6 flex flex-col justify-between">
+                <div className='flex flex-col gap-2 mb-4'>
                     <div className="flex items-start justify-between">
                         <div className="space-y-2">
                             <p className='text-xs rounded-full px-3 py-1 bg-muted w-fit'>
@@ -40,7 +40,7 @@ const Card = ({ event }) => {
                     </div>
                 </div>
 
-                <div className="pt-4 flex gap-4 mb-2">
+                <div className="pt-4 flex flex-col lg:flex-row gap-2 lg:gap-4 mb-2">
                     <Button variant="default" className="justify-center items-center flex-1">
                         View Details
                     </Button>

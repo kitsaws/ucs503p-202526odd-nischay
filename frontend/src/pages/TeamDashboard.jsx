@@ -35,27 +35,27 @@ const TeamDashboard = () => {
     return (
         <Layout>
             <section>
-                <div className='flex justify-between'>
+                <div className='flex flex-col md:flex-row justify-between mb-4 md:mb-0'>
                     <div>
-                        <h2 className='text-4xl font-bold mb-2'>Find Your Team</h2>
-                        <p className='text-muted-foreground mb-4'>Join existing teams or create your own for upcoming events</p>
+                        <h2 className='text-3xl md:text-4xl font-bold mb-2'>Find Your Team</h2>
+                        <p className='text-lg text-muted-foreground mb-4'>Join existing teams or create your own for upcoming events</p>
                     </div>
                     <Button
-                        className='h-fit'
+                        className='h-fit w-full justify-center py-4 md:w-fit'
                         onClick={() => navigate('/create-team')}
                     >
                         <CirclePlus />
                         Create Team
                     </Button>
                 </div>
-                <div className='flex gap-5'>
+                <div className='flex flex-col md:flex-row gap-4'>
                     <Input type="text" name='search' placeholder='Search teams by name, event, or skills needed...' onChange={(e) => searchFilter(e.target.value.toLowerCase())} />
                     <Dropdown options={['All Teams', 'Recruiting', 'Full']} onSelect={categoryFilter} >
                         <Funnel />
                     </Dropdown>
                 </div>
                 <p className='text-md text-muted-foreground my-6'>Showing {filtered.length} of {teams.length} teams</p>
-                <div className='flex flex-wrap items-center gap-4'>
+                <div className='grid md:grid-cols-2 xl:grid-cols-3 gap-6'>
                     {filtered.map((team, index) => (
                         <Card key={index} team={team} />
                     ))}

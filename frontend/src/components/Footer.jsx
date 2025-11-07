@@ -2,7 +2,7 @@ import Logo from "./ui/Logo"
 
 const Footer = () => {
   return (
-    <footer className="w-full">
+    <footer className="w-full hidden md:block">
       <div className="w-[95%] h-0 border border-muted mx-auto" />
       <div className="flex justify-between items-center px-16 py-8">
         <Logo />

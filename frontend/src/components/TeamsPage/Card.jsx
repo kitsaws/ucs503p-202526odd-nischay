@@ -11,7 +11,7 @@ const Card = ({ team }) => {
     const navigate = useNavigate();
     const teamStatus = (team.teamSize === team.members.length ? 'Full' : 'Recruiting')
     const handleRequestToJoin = async () => {
-        if(!user) return toast.error('You need to Login first.')
+        if (!user) return toast.error('You need to Login first.')
         try {
             const res = await api.post(`/teams/${team._id}/request`);
             toast.success(res.data.message); // show success message
@@ -26,13 +26,13 @@ const Card = ({ team }) => {
     };
 
     return (
-        <div className="w-110 h-100 rounded-xl overflow-hidden hover-lift border border-border">
+        <div className="rounded-xl overflow-hidden hover-lift border border-border">
             <div className="h-2 bg-primary"></div>
-            <div className="p-6 flex flex-col justify-between h-full">
-                <div className='max-h-50 space-y-4'>
+            <div className="p-6 h-full flex flex-col justify-between">
+                <div className='flex flex-col gap-2 mb-4'>
                     <div className="flex items-center justify-between">
                         <div className="space-y-2">
-                            <span className='flex gap-2'>
+                            <span className='flex gap-2'>   
                                 <Trophy className='text-orange-400' />
                                 <h3 className="text-xl font-semibold">{team.teamName}</h3>
                             </span>
@@ -45,21 +45,21 @@ const Card = ({ team }) => {
 
                     <p className="text-sm text-muted-foreground line-clamp-2">{team.description}</p>
 
-                    <div className="space-y-2 text-sm">
+                    <div className="space-y-2 text-sm  mb-0">
                         <div className="flex items-center gap-2 text-muted-foreground">
                             <Users className="h-4 w-4" />
                             <span>
                                 {team.members.length}/{team.teamSize} Members
                             </span>
                         </div>
+                        <AvatarContainer members={team.members} />
                     </div>
                     <div className='font-semibold'>
                         <span>
                             <Code className='text-muted-foreground inline mr-2' />
                             Looking for:
                         </span>
-                        <AvatarContainer members={team.members} />
-                        <div className='mt-1 flex flex-wrap gap-1 w-[75%]'>
+                        <div className='mt-1 flex flex-wrap gap-1 w-full'>
                             {team.rolesNeeded.map((role, index) => (
                                 <p key={index} className='w-fit rounded-full font-medium text-sm text-muted-foreground bg-muted px-2 border border-border'>{role}</p>
                             ))}
@@ -67,7 +67,7 @@ const Card = ({ team }) => {
                     </div>
                 </div>
 
-                <div className="pt-4 flex gap-4 mb-2">
+                <div className="pt-4 flex flex-col lg:flex-row gap-2 lg:gap-4 mb-2">
                     <Button
                         variant="outline"
                         className="justify-center items-center flex-1"
@@ -76,7 +76,7 @@ const Card = ({ team }) => {
                         View Team
                     </Button>
                     {teamStatus === 'Recruiting' &&
-                    // team.request
+                        // team.request
                         <Button variant="default" onClick={handleRequestToJoin} className="justify-center items-center flex-1">
                             Request to Join
                         </Button>
