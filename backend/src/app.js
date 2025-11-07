@@ -15,26 +15,20 @@ const userRoutes = require('./routes/user');
 
 const app = express();
 
-// Middleware
-
-// app.use(
-//   session({
-//     secret: process.env.SESSION_SECRET,
-//     resave: false,
-//     saveUninitialized: false,
-//     cookie: { maxAge: 24 * 60 * 60 * 1000 }, // 24 hours
-//   })
-// );
-
 app.use(cors({
     origin: process.env.CLIENT_URL,
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
 }));
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 const isProd = process.env.NODE_ENV === "production";
+
 app.enable('trust proxy');
 app.set('trust proxy', 1);
+
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
@@ -44,15 +38,14 @@ app.use(session({
   cookie: {
     httpOnly: true,
     secure: isProd,           // must be true on Render
-    sameSite: isProd ? 'none' : 'lax',       // allow cross-site cookies
+    sameSite: isProd ? 'None' : 'Lax',       // allow cross-site cookies
     maxAge: 24 * 60 * 60 * 1000,
   },
 }));
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+
 app.use('/uploads', express.static('uploads'));
 
 // Routes
