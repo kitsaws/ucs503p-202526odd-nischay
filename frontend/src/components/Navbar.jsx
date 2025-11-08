@@ -70,7 +70,7 @@ const Navbar = () => {
                 className={`fixed inset-0 bg-black z-40 h-screen w-screen transition-opacity duration-300 ease-in-out 
           ${isOpen ? "opacity-40 visible" : "opacity-0 invisible"}`}
             />
-            <div className={`bg-background z-100 fixed top-0 right-0 h-screen w-[70vw] px-6 py-4 flex flex-col gap-10 shadow-lg transition-all ease-in-out duration-300 ${isOpen ? "translate-x-0" : "translate-x-full"}`}>
+            <div className={`bg-background z-100 fixed top-0 right-0 h-[100dvh] w-[70vw] px-6 py-4 flex flex-col gap-10 shadow-lg transition-all ease-in-out duration-300 ${isOpen ? "translate-x-0" : "translate-x-full"}`}>
                 <MobileLogo />
                 <div className="flex flex-col gap-2">
                     <Button variant="outline" className='justify-center' onClick={() => navigate('/')}>
