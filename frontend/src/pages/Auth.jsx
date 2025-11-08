@@ -33,13 +33,13 @@ const Auth = () => {
     };
 
     return (
-        <div className='w-screen h-screen flex justify-center items-center'>
-            <div className='w-1/4 flex flex-col gap-4 justify-center items-center'>
+        <div className='w-screen h-screen bg-gray-50 flex justify-center items-center'>
+            <div className='w-full px-6 md:px-0 md:w-1/4 flex flex-col gap-4 justify-center items-center'>
                 <Link to={'/'}>
                     <Logo />
                 </Link>
-                <div className='border w-full border-muted p-4 rounded-xl shadow-md'>
-                    <div className='w-2/3 bg-muted p-2 rounded-xl mb-10 mx-auto flex gap-1 justify-center items-center'>
+                <div className='border w-full bg-white border-muted p-4 rounded-xl shadow-md'>
+                    <div className='w-2/3 bg-muted p-1 rounded-xl mb-10 mx-auto flex gap-1 justify-center items-center'>
                         <button
                             className={`${authType === 'in' && 'bg-white'} flex-1 rounded-lg px-4 py-2`}
                             onClick={() => setAuthType('in')}
